@@ -4,9 +4,11 @@ import Head from "next/head";
 
 export default function Page({ children, duration }) {
   return (
-    <>
+    <html lang="en">
       <Head>
         <title>Dictionary App - Find Definitions and Synonyms</title>
+        <link rel="canonical" href="https://dictionary-alpha-liard.vercel.app/" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta
           name="description"
           content="A comprehensive dictionary app to find definitions, synonyms, translations, and more."
@@ -51,6 +53,6 @@ export default function Page({ children, duration }) {
       >
         {children}
       </motion.main>
-    </>
+    </html>
   );
 }
