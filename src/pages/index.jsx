@@ -49,8 +49,9 @@ const Home = () => {
       const data = await response.json();
       setData(data);
       toast.success("Result fetched!");
-      setWord(data[0]?.word);
-      setPhonetic(data[0]?.phonetic);
+      console.log(data[0]);
+      setWord(data[0]["word"]);
+      setPhonetic(data[0]["phonetic"]);
       setError(null);
     } catch (error) {
       console.error("Fetch Error:", error);
@@ -70,8 +71,8 @@ const Home = () => {
   }, [listening, resetTranscript, transcript]);
 
   const handleSearchClick = useCallback(() => {
-    setFooterSticked(false);
     fetchWordData(token);
+    setFooterSticked(false);
   }, [fetchWordData, token]);
 
   if (!isClient) {
@@ -136,8 +137,8 @@ const Home = () => {
             </h1>
             {data?.[0]?.phonetics?.map((phonetic, index) => (
               <div key={index}>
-                <h1 className="text-2xl font-semibold mt-4">{phonetic.text}</h1>
-                <ReactAudioPlayer src={phonetic.audio} controls />
+                <h1 className={`${phonetic.text? "":"hidden"} text-2xl font-semibold mt-4`}>{phonetic.text}</h1>
+                <ReactAudioPlayer src={phonetic.audio} controls className={`${phonetic.audio ? "":"hidden"} `} />
               </div>
             ))}
             {data?.[0]?.meanings?.map((meaning, index) => (
