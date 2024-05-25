@@ -61,11 +61,9 @@ const Home = () => {
   const handleToggleListening = useCallback(() => {
     if (listening) {
       setToken(transcript);
-      toast.info("Listening stopped.");
       SpeechRecognition.stopListening();
     } else {
       resetTranscript();
-      toast.info("Listening started.");
       SpeechRecognition.startListening({ continuous: true });
     }
   }, [listening, resetTranscript, transcript]);
