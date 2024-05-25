@@ -96,7 +96,7 @@ const Home = () => {
         />
         <h1 className="font-bold text-4xl lg:text-6xl mb-10">Dictionary</h1>
       </div>
-      <div className="flex justify-center flex-col items-center px-4 md:px-2 sm:px-10 mb-48">
+      <div className="flex justify-center flex-col items-center px-4 md:px-2 sm:px-10">
         <div className="flex flex-col sm:flex-row border border-solid w-full gap-2 sm-w-3/5 md:w-4/5 lg:w-2/3 xl:w-1/2 items-center justify-center border-black p-4 md:p-8 m-4 rounded-xl shadow-2xl">
           <input
             placeholder="Enter the word"
@@ -126,7 +126,7 @@ const Home = () => {
         </div>
         {word && (
           <div
-            className={`flex flex-col border border-solid w-full sm:w-3/5 md:w-4/5 lg:w-2/3 xl:w-1/2 border-black p-8 m-4 rounded-xl shadow-2xl`}
+            className={`mb-24 flex flex-col border border-solid w-full sm:w-3/5 md:w-4/5 lg:w-2/3 xl:w-1/2 border-black p-8 m-4 rounded-xl shadow-2xl`}
           >
             <h1 className="text-4xl mb-4">
               <b className="font-bold">{word}</b>{" "}
@@ -185,7 +185,7 @@ const Home = () => {
           </div>
         )}
       </div>
-      <footer className="border-t-2 mt-12 border-dark lg:text-sm xl:text-lg px-4 bg-black fixed bottom-0 w-full">
+      <footer className={`border-t-2 border-dark lg:text-sm xl:text-lg px-4 bg-black ${ word ? "": "fixed bottom-0" } w-full'}>
         <div className="py-4 md:py-8  flex flex-col md:flex-row items-center justify-center md:space-x-10 text-white">
           <span className="mb-2 md:mb-0 text-white text-center items-center justify-center">
             Built By Aviral Shastri
