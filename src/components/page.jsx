@@ -1,5 +1,5 @@
 import {motion} from "framer-motion"
-import AdSense from "./adsense"
+import AdSense from "./AdSense"
 export default function Page({children, duration}){
     return(
         <>
