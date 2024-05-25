@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from "react";
-import Page from "../components/Page";
+import Page from "../components/page";
 import Image from "next/image";
-import Logo from "../assets/logoLarge.png";
+import Logo from "../assets/LogoLarge.png";
 import ReactAudioPlayer from "react-audio-player";
 import { VscDebugBreakpointLog } from "react-icons/vsc";
 import {
