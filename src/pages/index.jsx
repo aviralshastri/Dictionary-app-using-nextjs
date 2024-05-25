@@ -167,7 +167,7 @@ const Home = () => {
                 ))}
                 <div className="flex items-center mt-8 ml-3">
                   <FaHandPointRight className="mr-2 h-6 w-6 flex-shrink-0" />
-                  <h1 className="text-2xl font-semibold">
+                  <h1 className={`${definition.example ? "":"hidden"} text-2xl font-semibold`}>
                     <b>Example</b>
                   </h1>
                 </div>
