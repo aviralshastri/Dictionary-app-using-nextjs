@@ -24,6 +24,7 @@ const Home = () => {
   const [footerSticked, setFooterSticked] = useState(true);
   const [error, setError] = useState(null);
   const [isClient, setIsClient] = useState(false);
+
   const {
     transcript,
     listening,
@@ -128,17 +129,31 @@ const Home = () => {
           <div
             className={`mb-24 flex flex-col border border-solid w-full sm:w-3/5 md:w-4/5 lg:w-2/3 xl:w-1/2 border-black p-8 m-4 rounded-xl shadow-2xl`}
           >
-            <h1 className="text-4xl mb-4">
+            <h1 className="text-4xl">
               <b className="font-bold">{word}</b>{" "}
               <i className="text-3xl">{phonetic}</i>
             </h1>
-            <h1 className="text-3xl font-semibold mt-10">Phonetics</h1>
-            {data?.[0]?.phonetics?.map((phonetic, index) => (
-              <div key={index}>
-                <h1 className={`${phonetic.text ? "" : "hidden"} text-2xl font-semibold mt-4`}>{phonetic.text}</h1>
-                <ReactAudioPlayer src={phonetic.audio} controls className={`${phonetic.audio ? "" : "hidden"}`} />
-              </div>
-            ))}
+            {data?.[0]?.phonetics?.length > 0 && (
+              <>
+                <h1 className="text-3xl font-semibold mt-6">Phonetics</h1>
+                {data[0].phonetics.map((phonetic, index) => (
+                  <div key={index}>
+                    <h1
+                      className={`${
+                        phonetic.text ? "" : "hidden"
+                      } text-2xl font-semibold mt-4`}
+                    >
+                      {phonetic.text}
+                    </h1>
+                    <ReactAudioPlayer
+                      src={phonetic.audio}
+                      controls
+                      className={`${phonetic.audio ? "" : "hidden"}`}
+                    />
+                  </div>
+                ))}
+              </>
+            )}
             {data?.[0]?.meanings?.map((meaning, index) => (
               <div key={index} className="mt-4">
                 <div className="flex items-center mt-10">
@@ -162,7 +177,8 @@ const Home = () => {
                     </h1>
                   </div>
                 ))}
-                {meaning.definitions.filter(def => def.example).length > 0 && (
+                {meaning.definitions.filter((def) => def.example).length >
+                  0 && (
                   <div className="flex items-center mt-8 ml-3">
                     <FaHandPointRight className="mr-2 h-6 w-6 flex-shrink-0 " />
                     <h1 className="text-2xl font-semibold">
@@ -171,7 +187,7 @@ const Home = () => {
                   </div>
                 )}
                 {meaning.definitions
-                  .filter(def => def.example)
+                  .filter((def) => def.example)
                   .map((definition, index) => (
                     <div key={index} className="flex items-center mt-4 ml-6">
                       <VscDebugBreakpointLog className="mr-2 h-6 w-6 flex-shrink-0" />
@@ -185,13 +201,18 @@ const Home = () => {
           </div>
         )}
       </div>
-      <footer className={`border-t-2 border-dark lg:text-sm xl:text-lg px-4 bg-black ${footerSticked ? "fixed bottom-0" : ""} w-full`}>
+      <footer
+        className={`border-t-2 border-dark lg:text-sm xl:text-lg px-4 bg-black ${
+          footerSticked ? "fixed bottom-0" : ""
+        } w-full`}
+      >
         <div className="py-4 md:py-8 flex flex-col md:flex-row items-center justify-center md:space-x-10 text-white">
           <span className="mb-2 md:mb-0 text-white text-center items-center justify-center">
             Built By Aviral Shastri
           </span>
           <span className="mb-2 md:mb-0 text-white text-center items-center justify-center">
-            Credits to DictionaryAPI for the data. <a href="https://dictionaryapi.dev/" className="text-yellow-600">
+            Credits to DictionaryAPI for the data.{" "}
+            <a href="https://dictionaryapi.dev/" className="text-yellow-600">
               (https://dictionaryapi.dev/)
             </a>
           </span>
