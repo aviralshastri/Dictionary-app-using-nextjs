@@ -185,7 +185,7 @@ const Home = () => {
           </div>
         )}
       </div>
-      <footer className={`border-t-2 border-dark lg:text-sm xl:text-lg px-4 bg-black ${ word ? "": "fixed bottom-0" } w-full'}>
+      <footer className={`border-t-2 border-dark lg:text-sm xl:text-lg px-4 bg-black ${ word ? "": "fixed bottom-0" } w-full`}>
         <div className="py-4 md:py-8  flex flex-col md:flex-row items-center justify-center md:space-x-10 text-white">
           <span className="mb-2 md:mb-0 text-white text-center items-center justify-center">
             Built By Aviral Shastri
