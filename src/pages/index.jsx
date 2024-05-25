@@ -135,6 +135,7 @@ const Home = () => {
               <b className="font-bold">{word}</b>{" "}
               <i className="text-3xl">{phonetic}</i>
             </h1>
+            <h1 className="text-3xl font-semibold mt-10">Phonetics</h1>
             {data?.[0]?.phonetics?.map((phonetic, index) => (
               <div key={index}>
                 <h1 className={`${phonetic.text? "":"hidden"} text-2xl font-semibold mt-4`}>{phonetic.text}</h1>
