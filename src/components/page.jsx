@@ -1,8 +1,11 @@
 import {motion} from "framer-motion"
-
+import AdSense from "./adsense"
 export default function Page({children, duration}){
     return(
         <>
+        <head>
+            <AdSense />
+        </head>
         <motion.main 
         initial={{y:20, opacity:0}}
         animate={{y:0, opacity:1}}
