@@ -16,14 +16,12 @@ import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
 
-
-
 const Home = () => {
   const [token, setToken] = useState(null);
   const [word, setWord] = useState(null);
   const [phonetic, setPhonetic] = useState(null);
   const [data, setData] = useState(null);
-  const [footersticked, setFooterSticked] = useState(true);
+  const [footerSticked, setFooterSticked] = useState(true);
   const [error, setError] = useState(null);
   const [isClient, setIsClient] = useState(false);
   const {
@@ -36,7 +34,6 @@ const Home = () => {
   useEffect(() => {
     setIsClient(true);
   }, []);
-
 
   const fetchWordData = useCallback(async (word) => {
     try {
@@ -100,7 +97,7 @@ const Home = () => {
         <h1 className="font-bold text-4xl lg:text-6xl mb-10">Dictionary</h1>
       </div>
       <div className="flex justify-center flex-col items-center px-4 md:px-2 sm:px-10">
-        <div className="flex flex-col sm:flex-row border border-solid w-full gap-2 sm-w-3/5 md:w-4/5 lg:w-2/3 xl:w-1/2 items-center justify-center border-black p-4 md:p-8 m-4 rounded-xl shadow-2xl">
+        <div className="flex flex-col sm:flex-row border border-solid w-full gap-2 sm:w-3/5 md:w-4/5 lg:w-2/3 xl:w-1/2 items-center justify-center border-black p-4 md:p-8 m-4 rounded-xl shadow-2xl">
           <input
             placeholder="Enter the word"
             className="px-4 py-2 border text-semibold text-sm sm:text-xl border-solid border-black rounded-xl w-full"
@@ -138,8 +135,8 @@ const Home = () => {
             <h1 className="text-3xl font-semibold mt-10">Phonetics</h1>
             {data?.[0]?.phonetics?.map((phonetic, index) => (
               <div key={index}>
-                <h1 className={`${phonetic.text? "":"hidden"} text-2xl font-semibold mt-4`}>{phonetic.text}</h1>
-                <ReactAudioPlayer src={phonetic.audio} controls className={`${phonetic.audio ? "":"hidden"} `} />
+                <h1 className={`${phonetic.text ? "" : "hidden"} text-2xl font-semibold mt-4`}>{phonetic.text}</h1>
+                <ReactAudioPlayer src={phonetic.audio} controls className={`${phonetic.audio ? "" : "hidden"}`} />
               </div>
             ))}
             {data?.[0]?.meanings?.map((meaning, index) => (
@@ -165,37 +162,36 @@ const Home = () => {
                     </h1>
                   </div>
                 ))}
-                <div className="flex items-center mt-8 ml-3">
-                  <FaHandPointRight className="mr-2 h-6 w-6 flex-shrink-0" />
-                  <h1 className={`${definition.example ? "":"hidden"} text-2xl font-semibold`}>
-                    <b>Example</b>
-                  </h1>
-                </div>
-                {meaning.definitions.map((definition, index) => (
-                  <div
-                    key={index}
-                    className={`flex items-center mt-4 ml-6 ${
-                      definition.example ? "" : "hidden"
-                    }`}
-                  >
-                    <VscDebugBreakpointLog className="mr-2 h-6 w-6 flex-shrink-0" />
+                {meaning.definitions.filter(def => def.example).length > 0 && (
+                  <div className="flex items-center mt-8 ml-3">
+                    <FaHandPointRight className="mr-2 h-6 w-6 flex-shrink-0 " />
                     <h1 className="text-2xl font-semibold">
-                      {definition.example}
+                      <b>Example</b>
                     </h1>
                   </div>
-                ))}
+                )}
+                {meaning.definitions
+                  .filter(def => def.example)
+                  .map((definition, index) => (
+                    <div key={index} className="flex items-center mt-4 ml-6">
+                      <VscDebugBreakpointLog className="mr-2 h-6 w-6 flex-shrink-0" />
+                      <h1 className="text-2xl font-semibold">
+                        {definition.example}
+                      </h1>
+                    </div>
+                  ))}
               </div>
             ))}
           </div>
         )}
       </div>
-      <footer className={`border-t-2 border-dark lg:text-sm xl:text-lg px-4 bg-black ${ footersticked? "fixed bottom-0":"" } w-full`}>
-        <div className="py-4 md:py-8  flex flex-col md:flex-row items-center justify-center md:space-x-10 text-white">
+      <footer className={`border-t-2 border-dark lg:text-sm xl:text-lg px-4 bg-black ${footerSticked ? "fixed bottom-0" : ""} w-full`}>
+        <div className="py-4 md:py-8 flex flex-col md:flex-row items-center justify-center md:space-x-10 text-white">
           <span className="mb-2 md:mb-0 text-white text-center items-center justify-center">
             Built By Aviral Shastri
           </span>
           <span className="mb-2 md:mb-0 text-white text-center items-center justify-center">
-              Credits to DictionaryAPI for the data. <a href="https://dictionaryapi.dev/" className="text-yellow-600">
+            Credits to DictionaryAPI for the data. <a href="https://dictionaryapi.dev/" className="text-yellow-600">
               (https://dictionaryapi.dev/)
             </a>
           </span>
